@@ -9,13 +9,7 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const App = () => {
   const [walletAddress, setWalletAddress] = useState(null);
 
-  useEffect(() => {
-    const onLoad = async () => {
-      await checkIfWalletIsConnected();
-    };
-    window.addEventListener("load", onLoad);
-    return () => window.removeEventListener("load", onLoad);
-  }, []);
+  
 
   const processWalletConnect = (connectedWallet) => {
     const publicKey = connectedWallet.publicKey.toString();
@@ -66,6 +60,14 @@ const App = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const onLoad = async () => {
+      await checkIfWalletIsConnected();
+    };
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
 
   const renderConnectedContainer = () => (
     <button
