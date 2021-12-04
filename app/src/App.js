@@ -9,7 +9,21 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const App = () => {
   const [walletAddress, setWalletAddress] = useState(null);
 
-  
+  const checkIfWalletIsConnected = async () => {
+    try {
+      const { solana } = window;
+
+      if (solana && solana.isPhantom) {
+        console.log("Phantom Wallet was found");
+        
+        await pageLoadWalletConnect();
+      } else {
+        alert("Solana object not found! Get a Phantom Wallet 👻");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const processWalletConnect = (connectedWallet) => {
     const publicKey = connectedWallet.publicKey.toString();
@@ -45,28 +59,13 @@ const App = () => {
     }
   };
 
-  const checkIfWalletIsConnected = async () => {
-    try {
-      const { solana } = window;
-
-      if (solana && solana.isPhantom) {
-        console.log("Phantom Wallet was found");
-        
-        await pageLoadWalletConnect();
-      } else {
-        alert("Solana object not found! Get a Phantom Wallet 👻");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
     window.addEventListener("load", onLoad);
     return () => window.removeEventListener("load", onLoad);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderConnectedContainer = () => (
