@@ -1,0 +1,43 @@
+{
+    "name": "Henrik Sedin",
+    "symbol": "",
+    "image": "1.png",
+    "description": "An NFT collection of NHL captains (past and present)",
+    "collection": {
+        "name": "Sol on ice",
+        "family": "Hockey with Sol"
+     },
+     "attributes" : [
+        {
+            "trait_type": "Name",
+            "value": "Henrik Sedin"
+        },
+        {
+            "trait_type": "Position",
+            "value": "Center"
+         },
+         {
+            "trait_type": "Number",
+            "value": "33"
+        },
+        {
+            "trait_type": "Team",
+            "value": "Vancouver Canucks"
+        }
+     ], 
+    "properties": {
+      "files": [
+        {
+          "uri": "1.png",
+          "type": "image/png"
+        }
+      ],
+      "category": "image",
+      "creators": [
+        {
+          "address": "37sFhkr2cZMq42Ty4WbTgFV2F3huasSSWG4vvRiF8a6h",
+          "share": 100
+        }
+      ]
+    }
+  }
