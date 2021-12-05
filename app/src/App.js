@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
+import CandyMachine from './CandyMachine';
 
 // Constants
 const TWITTER_HANDLE = "narb_s";
@@ -69,12 +70,15 @@ const App = () => {
   }, []);
 
   const renderConnectedContainer = () => (
+    <>
+    <CandyMachine walletAddress={window.solana} />
     <button
       className="cta-button disconnect-wallet-button"
       onClick={disconnectWallet}
     >
       Logout
     </button>
+    </>
   );
 
   const renderNotConnectedContainer = () => (
@@ -90,8 +94,8 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <p className="header">🍭 Candy Drop</p>
-          <p className="sub-text">NFT drop machine with fair mint</p>
+          <p className="header">🏒 Sol on Ice 🏒</p>
+          <p className="sub-text">An NFT collection of NHL captains (past and present) with fair mint</p>
           {!walletAddress && renderNotConnectedContainer()}
 
           {walletAddress && renderConnectedContainer()}
