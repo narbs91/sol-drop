@@ -108,12 +108,15 @@ const CandyMachine = ({ walletAddress }) => {
         // Get URI
         const response = await fetch(mint.data.uri);
         const parse = await response.json();
-
+        console.log(parse);
         console.log("Past Minted NFT", mint);
 
         const nftData = {
           image: parse.image,
           name: parse.name,
+          position: parse.attributes[1].value,
+          jerseyNumber: parse.attributes[2].value,
+          team: parse.attributes[3].value,
           mint_url: `https://explorer.solana.com/address/${mint.mint}?cluster=${process.env.REACT_APP_SOLANA_NETWORK}`,
         };
 
@@ -379,13 +382,18 @@ const CandyMachine = ({ walletAddress }) => {
 
   const renderMintedItems = () => (
     <div className="gif-container">
-      <p className="sub-text">Minted Items ✨</p>
+      <p className="sub-text">Minted Captains ✨</p>
       <div className="gif-grid">
         {mints.map((mint) => (
           <div className="gif-item" key={mint.name}>
             <img src={mint.image} alt={`Minted NFT ${mint.name}`} />
-            <p className="mint-name">{mint.name}</p>
-            <a href={mint.mint_url}>NFT Explore Link</a>
+            <p className="mint-text">
+              #{mint.jerseyNumber} - {mint.name}
+            </p>
+            <p className="mint-text">{mint.team}</p>
+            <a href={mint.mint_url} target="_blank" rel="noreferrer">
+              NFT Explore Link
+            </a>
           </div>
         ))}
       </div>
@@ -396,7 +404,7 @@ const CandyMachine = ({ walletAddress }) => {
     machineStats && (
       <div className="machine-container">
         {renderDropTimer()}
-        <p>{`Items Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p>
+        <p>{`Captains Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p>
         {/* Check to see if these properties are equal! */}
         {machineStats.itemsRedeemed === machineStats.itemsAvailable ? (
           <p className="sub-text">Sold Out 🥅</p>
