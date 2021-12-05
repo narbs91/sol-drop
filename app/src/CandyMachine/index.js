@@ -9,6 +9,8 @@ import {
   TOKEN_METADATA_PROGRAM_ID,
   SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
 } from "./helpers";
+import CountdownTimer from "../CountdownTimer";
+
 const {
   metadata: { Metadata, MetadataProgram },
 } = programs;
@@ -106,12 +108,15 @@ const CandyMachine = ({ walletAddress }) => {
         // Get URI
         const response = await fetch(mint.data.uri);
         const parse = await response.json();
-
+        console.log(parse);
         console.log("Past Minted NFT", mint);
 
         const nftData = {
           image: parse.image,
           name: parse.name,
+          position: parse.attributes[1].value,
+          jerseyNumber: parse.attributes[2].value,
+          team: parse.attributes[3].value,
           mint_url: `https://explorer.solana.com/address/${mint.mint}?cluster=${process.env.REACT_APP_SOLANA_NETWORK}`,
         };
 
@@ -356,15 +361,39 @@ const CandyMachine = ({ walletAddress }) => {
     });
   };
 
+  // Create render function
+  const renderDropTimer = () => {
+    // Get the current date and dropDate in a JavaScript Date object
+    const currentDate = new Date();
+    const dropDate = new Date(machineStats.goLiveData * 1000);
+
+    // If currentDate is before dropDate, render our Countdown component
+    if (currentDate < dropDate) {
+      console.log("Before drop date!");
+      // Don't forget to pass over your dropDate!
+      return <CountdownTimer dropDate={dropDate} />;
+    }
+
+    // Else let's just return the current drop date
+    return (
+      <p className="drop-date-text">{`Drop Date: ${machineStats.goLiveDateTimeString}`}</p>
+    );
+  };
+
   const renderMintedItems = () => (
     <div className="gif-container">
-      <p className="sub-text">Minted Items ✨</p>
+      <p className="sub-text">Minted Captains ✨</p>
       <div className="gif-grid">
         {mints.map((mint) => (
           <div className="gif-item" key={mint.name}>
             <img src={mint.image} alt={`Minted NFT ${mint.name}`} />
-            <p className="mint-name">{mint.name}</p>
-            <a href={mint.mint_url}>NFT Explore Link</a>
+            <p className="mint-text">
+              #{mint.jerseyNumber} - {mint.name}
+            </p>
+            <p className="mint-text">{mint.team}</p>
+            <a href={mint.mint_url} target="_blank" rel="noreferrer">
+              NFT Explore Link
+            </a>
           </div>
         ))}
       </div>
@@ -374,15 +403,20 @@ const CandyMachine = ({ walletAddress }) => {
   return (
     machineStats && (
       <div className="machine-container">
-        <p className="drop-date-text">{`Drop Date: ${machineStats.goLiveDateTimeString}`}</p>
-        <p>{`Items Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p>
-        <button
-          className="cta-button mint-button"
-          onClick={mintToken}
-          disabled={isMinting}
-        >
-          Mint NFT
-        </button>
+        {renderDropTimer()}
+        <p>{`Captains Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p>
+        {/* Check to see if these properties are equal! */}
+        {machineStats.itemsRedeemed === machineStats.itemsAvailable ? (
+          <p className="sub-text">Sold Out 🥅</p>
+        ) : (
+          <button
+            className="cta-button mint-button"
+            onClick={mintToken}
+            disabled={isMinting}
+          >
+            Mint NFT
+          </button>
+        )}
         {isMinting && <p>MINTING IN PROGRESS...</p>}
         {isLoadingMints && <p>LOADING MINTS...</p>}
         {mints.length > 0 && renderMintedItems()}

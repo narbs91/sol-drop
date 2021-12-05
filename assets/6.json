@@ -1,7 +1,7 @@
 {
-    "name": "Henrik Sedin",
+    "name": "Joe Sakic",
     "symbol": "HSOL",
-    "image": "1.png",
+    "image": "6.png",
     "description": "An NFT collection of NHL captains (past and present)",
     "collection": {
         "name": "Sol on ice",
@@ -10,7 +10,7 @@
      "attributes" : [
         {
             "trait_type": "Name",
-            "value": "Henrik Sedin"
+            "value": "Joe Sakic"
         },
         {
             "trait_type": "Position",
@@ -18,17 +18,17 @@
          },
          {
             "trait_type": "Number",
-            "value": "33"
+            "value": "19"
         },
         {
             "trait_type": "Team",
-            "value": "Vancouver Canucks"
+            "value": "Colorado Avalanche"
         }
      ], 
     "properties": {
       "files": [
         {
-          "uri": "1.png",
+          "uri": "6.png",
           "type": "image/png"
         }
       ],
