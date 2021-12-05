@@ -1,0 +1,43 @@
+{
+    "name": "Bo Horvat",
+    "symbol": "",
+    "image": "0.png",
+    "description": "An NFT collection of NHL captains (past and present)",
+    "collection": {
+        "name": "Sol on ice",
+        "family": "Hockey with Sol"
+     },
+     "attributes" : [
+        {
+            "trait_type": "Name",
+            "value": "Bo Horvat"
+        },
+        {
+            "trait_type": "Position",
+            "value": "Center"
+         },
+         {
+            "trait_type": "Number",
+            "value": "53"
+        },
+        {
+            "trait_type": "Team",
+            "value": "Vancouver Canucks"
+        }
+     ], 
+    "properties": {
+      "files": [
+        {
+          "uri": "0.png",
+          "type": "image/png"
+        }
+      ],
+      "category": "image",
+      "creators": [
+        {
+          "address": "37sFhkr2cZMq42Ty4WbTgFV2F3huasSSWG4vvRiF8a6h",
+          "share": 100
+        }
+      ]
+    }
+  }
