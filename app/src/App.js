@@ -94,7 +94,7 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <p className="header">🏒 Sol on Ice 🏒</p>
+          <p className="header">🏒 Sol on Ice</p>
           <p className="sub-text">An NFT collection of NHL captains (past and present) with fair mint</p>
           {!walletAddress && renderNotConnectedContainer()}
 
