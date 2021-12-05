@@ -1,7 +1,7 @@
 {
-    "name": "Henrik Sedin",
+    "name": "Jarome Iginla",
     "symbol": "HSOL",
-    "image": "1.png",
+    "image": "4.png",
     "description": "An NFT collection of NHL captains (past and present)",
     "collection": {
         "name": "Sol on ice",
@@ -10,25 +10,25 @@
      "attributes" : [
         {
             "trait_type": "Name",
-            "value": "Henrik Sedin"
+            "value": "Jarome Iginla"
         },
         {
             "trait_type": "Position",
-            "value": "Center"
+            "value": "Wing"
          },
          {
             "trait_type": "Number",
-            "value": "33"
+            "value": "12"
         },
         {
             "trait_type": "Team",
-            "value": "Vancouver Canucks"
+            "value": "Calgary Flames"
         }
      ], 
     "properties": {
       "files": [
         {
-          "uri": "1.png",
+          "uri": "4.png",
           "type": "image/png"
         }
       ],
